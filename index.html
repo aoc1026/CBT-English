@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test TOEFL & TOEIC - CBT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-lg font-bold text-lg">CBT</div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">English Mock Test</h1>
+                    <p class="text-xs text-slate-400">TOEFL & TOEIC Simulation</p>
+                </div>
+            </div>
+            <!-- Timer Display -->
+            <div id="timer-box" class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg flex items-center space-x-2">
+                <svg class="w-5 h-5 text-amber-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-sm text-slate-300">Sisa Waktu:</span>
+                <span id="time-remaining" class="font-mono font-bold text-amber-400 text-lg">45:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:p-6 my-auto">
+        
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="bg-white rounded-2xl shadow-xl p-8 text-center fade-in">
+            <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">📝</div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Simulasi Computer-Based Testing (CBT)</h2>
+            <p class="text-slate-600 max-w-lg mx-auto mb-6">Uji kemampuan bahasa Inggris Anda dengan format standar internasional. Pastikan koneksi stabil dan audio berfungsi dengan baik sebelum memulai.</p>
+            <div class="bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-xl text-sm mb-6 max-w-md mx-auto text-left">
+                <strong>Catatan Penting:</strong>
+                <ul class="list-disc list-inside mt-1 space-y-1">
+                    <li>Waktu ujian berjalan otomatis begitu tombol mulai diklik.</li>
+                    <li>Bagian Listening dilengkapi dengan pemutar audio.</li>
+                    <li>Sistem akan menilai otomatis saat Anda menekan tombol Selesai.</li>
+                </ul>
+            </div>
+            <button onclick="startTest()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition duration-200">
+                Mulai Ujian Sekarang
+            </button>
+        </div>
+
+        <!-- Test Interface (Hidden by default) -->
+        <div id="test-screen" class="hidden space-y-6 fade-in">
+            <!-- Progress Bar & Section Info -->
+            <div class="bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
+                <div>
+                    <span id="section-badge" class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Listening Comprehension</span>
+                    <p id="question-counter" class="text-sm font-medium text-slate-500 mt-1">Soal 1 dari 5</p>
+                </div>
+                <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
+                
+                <!-- Audio Player Container (Only shows if audioUrl exists) -->
+                <div id="audio-container" class="hidden bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center space-x-4">
+                    <div class="bg-indigo-600 text-white p-3 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-grow">
+                        <p class="text-xs font-semibold text-slate-500 uppercase">Audio Sesi Mendengar</p>
+                        <audio id="audio-player" controls class="w-iv mt-1 w-full h-10">
+                            Browser Anda tidak mendukung pemutar audio.
+                        </audio>
+                    </div>
+                </div>
+
+                <!-- Question Text -->
+                <div>
+                    <h3 id="question-text" class="text-lg md:text-xl font-semibold text-slate-800 leading-relaxed">
+                        Pertanyaan akan muncul di sini...
+                    </h3>
+                </div>
+
+                <!-- Options List -->
+                <div id="options-container" class="space-y-3">
+                    <!-- Options injected via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center pt-2">
+                <button id="prev-btn" onclick="prevQuestion()" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-6 py-2.5 rounded-xl shadow-sm transition disabled:opacity-50 disabled:cursor-not-allowed">
+                    Sebelumnya
+                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md transition">
+                    Selanjutnya
+                </button>
+                <button id="submit-btn" onclick="submitTest()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md transition">
+                    Selesai & Lihat Skor
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Screen (Hidden by default) -->
+        <div id="result-screen" class="hidden bg-white rounded-2xl shadow-xl p-8 text-center fade-in max-w-lg mx-auto">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">🎉</div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-1">Ujian Selesai!</h2>
+            <p class="text-slate-500 text-sm mb-6">Berikut adalah hasil rekapitulasi ujian mock test Anda.</p>
+            
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6">
+                <p class="text-sm text-slate-500 uppercase tracking-wider font-semibold">Skor Akhir Anda
