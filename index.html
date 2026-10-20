@@ -19,7 +19,7 @@
                 <div class="bg-indigo-600 p-2 rounded-lg font-bold text-lg">CBT</div>
                 <div>
                     <h1 id="header-title" class="font-bold text-lg leading-tight">English Mock Test</h1>
-                    <p id="header-subtitle" class="text-xs text-slate-400">Pilih Jenis Tes</p>
+                    <p id="header-subtitle" class="text-xs text-slate-400">Silakan Masukkan Identitas</p>
                 </div>
             </div>
             <!-- Timer Display -->
@@ -36,32 +36,45 @@
     <!-- Main Container -->
     <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:p-6 my-auto">
         
-        <!-- Welcome Screen: Pilih 3 Tes -->
-        <div id="welcome-screen" class="bg-white rounded-2xl shadow-xl p-8 text-center fade-in">
-            <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">🎯</div>
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">Pilih Jalur Mock Test Internasional</h2>
-            <p class="text-slate-600 max-w-lg mx-auto mb-8">Silakan pilih simulasi ujian bahasa Inggris yang ingin Anda taklukkan di bawah ini:</p>
+        <!-- Welcome Screen: Identitas & Pilih Tes -->
+        <div id="welcome-screen" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 fade-in max-w-xl mx-auto">
+            <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">📝</div>
+            <h2 class="text-2xl font-bold text-slate-800 text-center mb-1">Registrasi Peserta Tes</h2>
+            <p class="text-slate-600 text-center text-sm mb-6">Masukkan identitas Anda sebelum memilih simulasi ujian.</p>
             
-            <div class="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-6">
+            <!-- Form Identitas -->
+            <div class="space-y-4 mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap</label>
+                    <input type="text" id="participant-name" placeholder="Contoh: Adhitya Octavianie" class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-slate-800 bg-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Institusi / Instansi</label>
+                    <input type="text" id="participant-institution" placeholder="Contoh: Politeknik Penerbangan Makassar" class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-slate-800 bg-white">
+                </div>
+            </div>
+
+            <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3 text-center">Pilih Jalur Mock Test</h3>
+            <div class="grid md:grid-cols-3 gap-3">
                 <!-- TOEFL -->
-                <button onclick="startTest('toefl')" class="bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-500 text-indigo-700 p-5 rounded-2xl shadow-sm transition text-left group flex flex-col justify-between">
+                <button onclick="startTest('toefl')" class="bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-500 text-indigo-700 p-4 rounded-xl shadow-sm transition text-left group flex flex-col justify-between">
                     <div>
-                        <div class="text-lg font-bold mb-1 group-hover:translate-x-1 transition">TOEFL ➔</div>
-                        <p class="text-xs text-slate-600">Academic Listening & Structure.</p>
+                        <div class="text-base font-bold mb-1 group-hover:translate-x-1 transition">TOEFL ➔</div>
+                        <p class="text-[11px] text-slate-600">Academic Listening & Structure.</p>
                     </div>
                 </button>
                 <!-- TOEIC -->
-                <button onclick="startTest('toeic')" class="bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-500 text-emerald-700 p-5 rounded-2xl shadow-sm transition text-left group flex flex-col justify-between">
+                <button onclick="startTest('toeic')" class="bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-500 text-emerald-700 p-4 rounded-xl shadow-sm transition text-left group flex flex-col justify-between">
                     <div>
-                        <div class="text-lg font-bold mb-1 group-hover:translate-x-1 transition">TOEIC ➔</div>
-                        <p class="text-xs text-slate-600">Business Listening & Workplace Reading.</p>
+                        <div class="text-base font-bold mb-1 group-hover:translate-x-1 transition">TOEIC ➔</div>
+                        <p class="text-[11px] text-slate-600">Business Listening & Reading.</p>
                     </div>
                 </button>
                 <!-- IELTS -->
-                <button onclick="startTest('ielts')" class="bg-amber-50 hover:bg-amber-100 border-2 border-amber-500 text-amber-700 p-5 rounded-2xl shadow-sm transition text-left group flex flex-col justify-between">
+                <button onclick="startTest('ielts')" class="bg-amber-50 hover:bg-amber-100 border-2 border-amber-500 text-amber-700 p-4 rounded-xl shadow-sm transition text-left group flex flex-col justify-between">
                     <div>
-                        <div class="text-lg font-bold mb-1 group-hover:translate-x-1 transition">IELTS ➔</div>
-                        <p class="text-xs text-slate-600">Academic Listening & Reading Practice.</p>
+                        <div class="text-base font-bold mb-1 group-hover:translate-x-1 transition">IELTS ➔</div>
+                        <p class="text-[11px] text-slate-600">Academic Listening & Reading.</p>
                     </div>
                 </button>
             </div>
@@ -127,14 +140,22 @@
             <h2 class="text-2xl font-bold text-slate-800 mb-1">Ujian Selesai!</h2>
             <p id="result-category" class="text-indigo-600 font-semibold text-sm mb-4">Simulasi Ujian</p>
             
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6">
-                <p class="text-sm text-slate-500 uppercase tracking-wider font-semibold">Skor Akhir Anda</p>
-                <p id="final-score" class="text-5xl font-extrabold text-indigo-600 my-2">0</p>
+            <!-- Info Peserta di Halaman Hasil -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-4 text-left">
+                <p class="text-xs text-slate-500 uppercase font-bold">Nama Peserta</p>
+                <p id="res-name" class="font-semibold text-slate-800 text-sm mb-2">-</p>
+                <p class="text-xs text-slate-500 uppercase font-bold">Institusi</p>
+                <p id="res-inst" class="font-semibold text-slate-800 text-sm">-</p>
+            </div>
+
+            <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                <p class="text-sm text-indigo-600 uppercase tracking-wider font-semibold">Skor Akhir Anda</p>
+                <p id="final-score" class="text-5xl font-extrabold text-indigo-700 my-2">0</p>
                 <p id="score-description" class="text-sm text-slate-600 font-medium">Benar 0 dari 0 soal</p>
             </div>
 
             <button onclick="location.reload()" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl transition">
-                Kembali ke Menu Utama
+                Keluar / Ulangi Tes
             </button>
         </div>
 
@@ -147,7 +168,6 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // DATABASE SOAL 3 JALUR (TOEFL, TOEIC, IELTS)
         const testBank = {
             toefl: [
                 {
@@ -157,33 +177,10 @@
                     question: "[TOEFL] What does the professor imply about the research paper submission?",
                     options: ["Students can submit via email.", "The deadline has been extended by two days.", "Hard copies must be delivered directly to the office.", "Only digital drafts are acceptable."],
                     answer: 1
-                },
-                {
-                    id: 2,
-                    section: "TOEFL - Structure & Written Expression",
-                    audioUrl: "",
-                    question: "[TOEFL] Choose the correct form: Hard _____ he studied, he could not pass the advanced syntax exam.",
-                    options: ["although", "as", "if", "unless"],
-                    answer: 1
                 }
             ],
             toeic: [
-                {
-                    id: 1,
-                    section: "TOEIC - Listening (Short Talk)",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                    question: "[TOEIC] When is the quarterly financial board meeting scheduled to begin?",
-                    options: ["At 9:00 AM in Conference Room B", "After the annual audit report is finalized", "Next Monday afternoon", "Before the marketing director arrives"],
-                    answer: 0
-                },
-                {
-                    id: 2,
-                    section: "TOEIC - Reading (Incomplete Sentences)",
-                    audioUrl: "",
-                    question: "[TOEIC] All employees are requested to submit their travel expense reports _____ Friday afternoon.",
-                    options: ["by", "until", "during", "since"],
-                    answer: 0
-                }
+                // Bagian TOEIC siap diisi soal dari buku Tactics for TOEIC Anda
             ],
             ielts: [
                 {
@@ -193,18 +190,11 @@
                     question: "[IELTS] According to the speaker, what is the main cause of the urban heat island effect in modern cities?",
                     options: ["Excessive vehicle emissions during rush hour", "The high concentration of dark asphalt and concrete surfaces absorbing heat", "Lack of underground water drainage systems", "Industrial heating appliances operating at night"],
                     answer: 1
-                },
-                {
-                    id: 2,
-                    section: "IELTS - Academic Reading",
-                    audioUrl: "",
-                    question: "[IELTS] Choose the synonym for the word 'ubiquitous' as commonly used in academic texts:",
-                    options: ["Rare", "Omnipresent / Found everywhere", "Controversial", "Temporary"],
-                    answer: 1
                 }
             ]
         };
 
+        let participantData = { name: "", institution: "" };
         let currentTestType = 'toefl';
         let currentQuestions = [];
         let currentQuestionIndex = 0;
@@ -213,13 +203,30 @@
         let timeLeft = 30 * 60; // 30 Menit
 
         function startTest(type) {
+            let nameInput = document.getElementById('participant-name').value.trim();
+            let instInput = document.getElementById('participant-institution').value.trim();
+
+            if (!nameInput || !instInput) {
+                alert("Mohon isi Nama Lengkap dan Institusi terlebih dahulu sebelum memulai tes!");
+                return;
+            }
+
+            participantData.name = nameInput;
+            participantData.institution = instInput;
+
             currentTestType = type;
             currentQuestions = testBank[type];
+            
+            if (!currentQuestions || currentQuestions.length === 0) {
+                alert("Maaf, soal untuk kategori ini masih kosong/belum diisi.");
+                return;
+            }
+
             currentQuestionIndex = 0;
             userAnswers = {};
 
             let titleMap = { toefl: 'Simulasi TOEFL', toeic: 'Simulasi TOEIC', ielts: 'Simulasi IELTS' };
-            document.getElementById('header-subtitle').textContent = titleMap[type];
+            document.getElementById('header-subtitle').textContent = `${participantData.name} (${participantData.institution})`;
 
             document.getElementById('welcome-screen').classList.add('hidden');
             document.getElementById('test-screen').classList.remove('hidden');
@@ -266,7 +273,7 @@
                 audioPlayer.src = "";
             }
 
-            document.getElementById('question-text').textContent = `${currentQuestionIndex + 1}. ${q.question}`;
+            document.getElementById('question-text').innerHTML = `${currentQuestionIndex + 1}. ${q.question}`;
 
             let optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
@@ -331,6 +338,8 @@
             
             let labelMap = { toefl: 'Simulasi TOEFL ITP / iBT', toeic: 'Simulasi TOEIC', ielts: 'Simulasi IELTS Academic' };
             document.getElementById('result-category').textContent = labelMap[currentTestType];
+            document.getElementById('res-name').textContent = participantData.name;
+            document.getElementById('res-inst').textContent = participantData.institution;
             document.getElementById('final-score').textContent = finalScoreVal;
             document.getElementById('score-description').textContent = `Jawaban Benar: ${correctCount} dari ${currentQuestions.length} soal`;
         }
