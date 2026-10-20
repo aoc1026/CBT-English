@@ -8,7 +8,7 @@
     <style>
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        /* Mengunci pemutar audio agar tidak bisa digeser/seek oleh peserta */
+        /* Sembunyikan progress bar agar peserta tidak bisa geser-geser audio */
         audio::-webkit-media-controls-timeline {
             display: none !important;
         }
@@ -107,9 +107,10 @@
                     </div>
                     <div class="flex-grow">
                         <div class="flex justify-between items-center mb-1">
-                            <p class="text-xs font-semibold text-slate-500 uppercase">Audio Sesi Mendengar (Pemutaran Terkunci)</p>
+                            <p class="text-xs font-semibold text-slate-500 uppercase">Audio Sesi Mendengar</p>
                             <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">Sekali Putar / Dilarang Geser</span>
                         </div>
+                        <!-- Menggunakan format direct download Google Drive agar tombol play langsung aktif -->
                         <audio id="audio-player" controls controlsList="nodownload noplaybackrate" class="w-full h-10">
                             Browser Anda tidak mendukung pemutar audio.
                         </audio>
@@ -191,7 +192,7 @@
                 {
                     id: 1,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1HD6QpSWIFtTK_iIOEhav1Z0vDoXJpsxq' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 1 in your test book.",
                     options: [
                         "She's writing on the board.",
@@ -204,7 +205,7 @@
                 {
                     id: 2,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1WKfSFkaq3FV039SwpV3wHrO4fmBA1CQ4' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 2 in your test book.",
                     options: [
                         "He's cutting a tree.",
@@ -217,7 +218,7 @@
                 {
                     id: 3,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1xPLeLDgx_ChsC4jevZQaTSF1F2c_YzU-' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 3 in your test book.",
                     options: [
                         "She's wrapping a package.",
@@ -230,7 +231,7 @@
                 {
                     id: 4,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1I70HpxJpZFPkEPxmY8vZxJLcmX3PwfSr' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 4 in your test book.",
                     options: [
                         "The vehicles are stuck in traffic.",
@@ -243,7 +244,7 @@
                 {
                     id: 5,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1KAUV8V45rOF9QqJEU2rcE-ezNI9vvcDr' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 5 in your test book.",
                     options: [
                         "The drawers are being opened.",
@@ -256,7 +257,7 @@
                 {
                     id: 6,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1u7GCNBQOt0hMVT2V2r7r7GiSBwHCoS1W' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 6 in your test book.",
                     options: [
                         "She's paying for her food.",
@@ -269,7 +270,7 @@
                 {
                     id: 7,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1yqmCR6WJH9j9eSq6PrUH6N2r3xwcJ5Zh' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 7 in your test book.",
                     options: [
                         "Some people are sitting on benches.",
@@ -282,7 +283,7 @@
                 {
                     id: 8,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/19zVZx5f1mZlhUaAWOFHXcNULJ89Irgj_' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 8 in your test book.",
                     options: [
                         "She's washing her hands.",
@@ -295,7 +296,7 @@
                 {
                     id: 9,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1VEqhTcVEBTMxxJ0ZeKZVMvTEpsVZdIml' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 9 in your test book.",
                     options: [
                         "The man is climbing a stone wall.",
@@ -308,7 +309,7 @@
                 {
                     id: 10,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://lh3.googleusercontent.com/d/1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
+                    audioUrl: "https://docs.google.com/uc?export=download&id=1jr-w3r_MdRnQxLpJPKfwr4QcjnGQm6Q2",
                     question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1I2UOltcmXuVXTWIiXb8FcxKzELAn8FNV' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 10 in your test book.",
                     options: [
                         "Workers are building a road.",
@@ -404,6 +405,7 @@
             if (q.audioUrl && q.audioUrl.trim() !== "") {
                 audioContainer.classList.remove('hidden');
                 audioPlayer.src = q.audioUrl;
+                audioPlayer.load(); // Paksa browser memuat ulang sumber audio agar siap diputar
             } else {
                 audioContainer.classList.add('hidden');
                 audioPlayer.pause();
@@ -438,6 +440,7 @@
             }
         }
 
+        function selectAction... (opsi pilihan)
         function selectAnswer(index) {
             userAnswers[currentQuestionIndex] = index;
             loadQuestion();
