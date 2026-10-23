@@ -82,6 +82,26 @@
 
         <!-- Test Interface (Hidden by default) -->
         <div id="test-screen" class="hidden space-y-6 fade-in">
+            
+            <!-- MASTER AUDIO PLAYER (Terpusat di atas untuk seluruh soal sesi ini) -->
+            <div id="master-audio-container" class="bg-slate-900 text-white p-4 rounded-2xl shadow-md flex items-center space-x-4">
+                <div class="bg-indigo-600 text-white p-3 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-center mb-1">
+                        <p class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Audio Sesi Ujian (Putar Sekali di Awal)</p>
+                        <span class="text-[10px] bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded">Listening Session</span>
+                    </div>
+                    <audio id="master-audio-player" controls class="w-full h-10 accent-indigo-500">
+                        Browser Anda tidak mendukung pemutar audio.
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Progress & Counter Bar -->
             <div class="bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
                 <div>
                     <span id="section-badge" class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Bagian Tes</span>
@@ -94,24 +114,6 @@
 
             <!-- Question Card -->
             <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
-                <!-- Audio Player Container -->
-                <div id="audio-container" class="hidden bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center space-x-4">
-                    <div class="bg-indigo-600 text-white p-3 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-                        </svg>
-                    </div>
-                    <div class="flex-grow">
-                        <div class="flex justify-between items-center mb-1">
-                            <p class="text-xs font-semibold text-slate-500 uppercase">Audio Sesi Mendengar</p>
-                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Silakan Tekan Play</span>
-                        </div>
-                        <audio id="audio-player" controls class="w-full h-10">
-                            Browser Anda tidak mendukung pemutar audio.
-                        </audio>
-                    </div>
-                </div>
-
                 <!-- Question Text -->
                 <div>
                     <h3 id="question-text" class="text-lg md:text-xl font-semibold text-slate-800 leading-relaxed">
@@ -250,8 +252,7 @@
                 {
                     id: 9,
                     section: "TOEIC - Listening Part 1 (Photographs)",
-                    audioUrl: "https://raw.githubusercontent.com/aoc1026/CBT-English/main/Tactics-For-TOEIC-Practice-Test.mp3",
-                    question: "<div class='mb-3'><img src='https://lh3.googleusercontent.com/d/1VEqhTcVEBTMxxJ0ZeKZVMvTEpsVZdIml' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 9 in your test book.",
+                    audioUrl: "https://raw.githubusercontent.com/d/1VEqhTcVEBTMxxJ0ZeKZVMvTEpsVZdIml' class='mx-auto rounded-lg max-h-60 object-contain'></div>Look at the picture marked number 9 in your test book.",
                     options: ["The man is climbing a stone wall.", "Some workers are cleaning up some rocks.", "The man is looking at a book.", "Stones across the road are blocking traffic."],
                     answer: 2
                 },
@@ -311,9 +312,34 @@
 
             document.getElementById('welcome-screen').classList.add('hidden');
             document.getElementById('test-screen').classList.remove('hidden');
-            document.getElementById('timer-box').classList.add('hidden'); // Sembunyikan timer dulu agar tidak error, atau ubah sesuai fungsi Anda
+            document.getElementById('timer-box').classList.remove('hidden');
+            document.getElementById('timer-box').classList.add('flex');
+
+            // Atur Master Audio Utama Berdasarkan Jenis Tes
+            let masterAudio = document.getElementById('master-audio-player');
+            if (currentQuestions[0].audioUrl) {
+                masterAudio.src = currentQuestions[0].audioUrl;
+                masterAudio.load();
+            }
             
+            startTimer();
             loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu ujian telah habis!");
+                    submitTest();
+                    return;
+                }
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('time-remaining').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
         }
 
         function loadQuestion() {
@@ -324,17 +350,6 @@
             
             let progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
-
-            let audioContainer = document.getElementById('audio-container');
-            let audioPlayer = document.getElementById('audio-player');
-            if (q.audioUrl && q.audioUrl.trim() !== "") {
-                audioContainer.classList.remove('hidden');
-                audioPlayer.src = q.audioUrl;
-            } else {
-                audioContainer.classList.add('hidden');
-                audioPlayer.pause();
-                audioPlayer.src = "";
-            }
 
             document.getElementById('question-text').innerHTML = `${currentQuestionIndex + 1}. ${q.question}`;
 
@@ -384,6 +399,12 @@
         }
 
         function submitTest() {
+            clearInterval(timerInterval);
+            
+            // Matikan audio utama saat ujian selesai
+            let masterAudio = document.getElementById('master-audio-player');
+            masterAudio.pause();
+
             let correctCount = 0;
             currentQuestions.forEach((q, idx) => {
                 if (userAnswers[idx] === q.answer) {
@@ -395,6 +416,7 @@
 
             document.getElementById('test-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('timer-box').classList.add('hidden');
             
             let labelMap = { toefl: 'Simulasi TOEFL ITP / iBT', toeic: 'Simulasi TOEIC', ielts: 'Simulasi IELTS Academic' };
             document.getElementById('result-category').textContent = labelMap[currentTestType];
